@@ -1,0 +1,135 @@
+
+SUTHERLAND–HODGMAN  POLYGON CLIPPING ALGORITHM
+        
+
+    Sutherland-Hodgeman Polygon Clipping Algorithm :
+            Polygon clipping is the process of removing the portions of a
+            polygon that lie outside a given rectangular window (viewport).
+            Only the part of the polygon that lies inside the window is
+            displayed.
+            One of the mostly used polygon clipping algorithms is the
+            Sutherland–Hodgman Polygon Clipping Algorithm.
+        
+        Algorithm:
+            1.Read coordinates of all vertices of the polygon.
+            2.Read coordinates of the clipping window
+            3.Consider one clipping boundary of the window (starting with the left edge).
+            4.Compare the vertices of each edge of the polygon, individually with the clipping plane
+                For each polygon edge, four cases are considered:
+                    Case 1: Inside → Inside
+                            Both vertices are kept.
+                    Case 2: Inside → Outside
+                            Only the intersection point is kept.
+                    Case 3: Outside → Inside
+                            The intersection point and the inside vertex are kept.
+                    Case 4: Outside → Outside
+                            The entire edge is discarded.
+            5.Save the resulting intersections and vertices in the new list of vertices 
+            according to four possible relationships between the edge and the clipping boundary.
+            The clipping is performed in four stages:
+                    1. Left Clipping   (x = xmin)
+                    2. Right Clipping  (x = xmax)
+                    3. Top Clipping    (y = ymax)
+                    4. Bottom Clipping (y = ymin)
+            
+                To calculate intersection points, the parametric form of a line is used.
+                For a line segment from (x1, y1) to (x2, y2):
+                    x = x1 + t(x2 - x1)
+                    y = y1 + t(y2 - y1)
+
+                t is NOT the slope of the line.
+                t indicates how far along the line the intersection occurs.
+                t is a parameter (0 ≤ t ≤ 1) that represents the relative position of a point along the line segment.
+            6.Repeat the steps 4 and 5 for remaining edges of the clipping window. 
+            7.Stop.
+
+
+NUMERICAL EXAMPLE
+        Clip the following polygon using Sutherland-Hodgeman Polygon Clipping Algorithm. 
+        Where given Polygon Vertices are V1 (25, 30), V2 (40, 45),V3 (55, 30),V4 (40, 15)
+        and clipping Window with xmin = 30, xmax = 50,ymin = 20,ymax = 40.
+
+    STEP 1: LEFT CLIPPING (x = 30)
+        Edge V1(25,30) → V2(40,45):
+            25 + t(40 - 25) = 30
+                15t = 5
+                t = 1/3
+            y = 30 + (1/3)(45 - 30)
+            y = 35
+            Intersection Point: P = (30, 35)
+
+        Edge V4(40,15) → V1(25,30):
+            40 + t(25 - 40) = 30
+                -15t = -10
+                t = 2/3
+            y = 15 + (2/3)(30 - 15)
+            y = 25
+            Intersection Point: Q = (30, 25)
+
+        Edges with vertices v2v3 and v3v4 lies inside the x-boundary.
+
+
+    STEP 2: RIGHT CLIPPING (x = 50)
+        Edge V2(40,45) → V3(55,30):
+            40 + t(55 - 40) = 50
+                15t = 10
+                t = 2/3
+            y = 45 + (2/3)(30 - 45)
+            y = 35
+            Intersection Point: R = (50, 35)
+
+        Edge V3(55,30) → V4(40,15):
+            55 + t(40 - 55) = 50
+                -15t = -5
+                t = 1/3
+            y = 30 + (1/3)(15 - 30)
+            y = 25
+            Intersection Point: S = (50, 25)
+
+
+    STEP 3: TOP CLIPPING (y = 40)
+            Edge P(30,35) → V2(40,45):
+            35 + t(45 - 35) = 40
+                10t = 5
+                t = 1/2
+            x = 30 + (1/2)(40 - 30)
+            x = 35
+            Intersection Point: T = (35, 40)
+
+        Edge V2(40,45) → R(50,35):
+            45 + t(35 - 45) = 40
+                -10t = -5
+                t = 1/2
+            x = 40 + (1/2)(50 - 40)
+            x = 45
+            Intersection Point: U = (45, 40)
+
+
+    STEP 4: BOTTOM CLIPPING (y = 20)
+        Edge Q(30,25) → V4(40,15):
+                25 + t(15 - 25) = 20
+                -10t = -5
+                t = 1/2
+            x = 30 + (1/2)(40 - 30)
+            x = 35
+            Intersection Point: V = (35, 20)
+
+
+        Edge V4(40,15) → S(50,25):
+            15 + t(25 - 15) = 20
+                10t = 5
+                t = 1/2
+            x = 40 + (1/2)(50 - 40)
+            x = 45
+            Intersection Point: W = (45, 20)
+
+    FINAL CLIPPED POLYGON
+                The final clipped polygon vertices are:
+                    (35,40)
+                    (45,40)
+                    (50,35)
+                    (50,25)
+                    (45,20)
+                    (35,20)
+                    (30,25)
+                    (30,35)

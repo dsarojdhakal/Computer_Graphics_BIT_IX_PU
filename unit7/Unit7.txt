@@ -1,0 +1,120 @@
+Unit 7: Graphical Languages
+
+7.1 Need for Machine-Independent Graphical Language (GKS and PHIGS)
+7.2 Discussion of Available Graphical Languages and File Formats
+
+1. Hardware Dependence
+        In the early development of computer graphics,graphics programs were closely tied to specific
+        hardware devices such as monitors, plotters, and input peripherals.
+        Each graphics device had its own command set, coordinate system, and control method.
+        As a result, a program written for one graphics system could not be used on another system
+        without major modifications.
+        This hardware dependence created serious problems in portability, maintenance, and
+        software development efficiency.
+        
+
+2. Need for Machine-Independent Graphical Languages
+        Machine-independent graphical languages were introduced to remove the dependency between
+        graphics software and hardware.
+        The main needs of Machine-Independent Graphical Languages are :
+            Portability:
+                Graphics programs should run on different machines without rewriting the code.
+            Hardware Abstraction:
+                Programmers work with logical graphics functions instead of device-specific commands.
+            Reduced Development Cost:
+                Eliminates multiple versions of the same program for different hardware.
+            Device Uniformity:
+                Same program can produce output on displays, printers, and plotters.
+            Easy Maintenance:
+                Hardware upgrades do not affect application programs.
+            Standardization:
+                Ensures consistent graphics behavior across different systems and vendors.
+
+
+3. Graphical Kernel System (GKS)
+        The Graphical Kernel System (GKS) is a standard, machine-independent graphics programming 
+        interface mainly designed for 2D graphics.
+        GKS supports basic 2D output primitives such as Polyline, Polymarker, Text, Fill Area, and Cell Array.
+        GKS uses logical input devices independent of physical hardware such as Locator, Stroke, Valuator, Choice, Pick, and String.
+        GKS provides coordinate transformation from World Coordinates to Normalized Device Coordinates 
+        and then to Device Coordinates.
+        GKS supports multiple workstations for output to different devices.
+        GKS uses segment storage to group graphical elements for manipulation.
+        GKS allows graphical attributes such as line type, color, text font, and fill style to be set for primitives.
+        GKS provides bundled attributes for consistent appearance across multiple primitives.
+        GKS supports multiple levels of implementation for workstations including basic output, 
+        input handling, and segment manipulation.
+        GKS input devices operate in REQUEST, SAMPLE, or EVENT modes to handle different interaction types.
+        GKS allows creation, modification, and deletion of segments for better graphics management.
+        GKS provides a standard environment for 2D plotting, scientific visualization, business graphics, and educational purposes.
+        GKS ensures device independence so that the same program works on different output devices without modification.
+        GKS supports workstation-independent segment storage to allow sharing of graphical objects between devices.
+        GKS is mainly used for simple graphics applications, business charts, and scientific visualization.
+        
+        Limitations of GKS:
+            GKS supports only 2D graphics and cannot handle 3D modeling.
+            GKS provides limited interaction capabilities for dynamic or complex applications.
+            GKS segment storage is not suitable for highly detailed or hierarchical graphics.
+            GKS lacks advanced rendering features such as lighting, shading, textures, 
+            and hidden surface removal.
+
+
+
+4. Programmer's Hierarchical Interactive Graphics System (PHIGS)
+        PHIGS is an advanced, machine-independent graphics standard for 2D and 3D graphics.
+        PHIGS uses a hierarchical structure model where objects can reference other structures.
+        Transformations and attributes are inherited through the hierarchy for efficient scene management.
+        PHIGS supports primitives like Polylines, Polymarkers, Text, Fill Areas, Surfaces, and 3D polygons.
+        PHIGS provides a viewing pipeline from world coordinates to normalized device coordinates to device coordinates.
+        Segments can be created, modified, or deleted, allowing incremental updates without full redraw.
+        Input devices like Locator, Stroke, Valuator, Choice, Pick, and String with advanced interaction modes.
+        Hierarchical editing allows opening, inserting, replacing, and posting structures for display.
+        PHIGS+ extensions add lighting, shading and hidden surface removal.
+        PHIGS is used in CAD/CAM, architectural design, flight simulators, and interactive applications.
+        Device independence allows programs to run on different devices without modification.
+        Object reuse through instancing reduces memory use and improves efficiency.
+        PHIGS is suitable for complex hierarchical scenes and interactive professional graphics.
+
+        Limitations of PHIGS:
+            PHIGS is complex and has a steep learning curve.
+            PHIGS requires high memory and processing for large scenes.
+            Hierarchical editing can be time-consuming.
+            PHIGS has limited support in modern systems compared to OpenGL and Direct3D.
+
+
+5. Discussion of Available Graphical Languages and File Formats
+
+    Available Graphical Languages:
+        GKS: Standard for 2D machine-independent graphics.
+        PHIGS: Hierarchical 3D graphics standard built on GKS concepts.
+        OpenGL: Widely used graphics API for 2D and 3D rendering on multiple platforms.
+        Direct3D: Microsoft API for 3D graphics, mainly on Windows.
+        WebGL: Browser-based graphics API, derived from OpenGL ES(Embedded Systems).
+        SVG: Scalable Vector Graphics, XML-based vector image language for web.
+        PostScript: Page description language used for vector graphics and printing.
+        VRML/X3D: Standards for 3D scenes and web-based interactive graphics.
+
+        Raster formats are pixel-based and resolution-dependent.
+        Vector formats are resolution-independent and scalable.
+        3D formats store geometric and sometimes material data for rendering.
+        Choice of format depends on application like visualization, printing, simulation, or web display.
+
+
+    Graphics File Formats:
+        Raster Formats:
+            BMP: Uncompressed bitmap image format.
+            PNG: Compressed lossless raster image format supporting transparency.
+            JPEG: Compressed raster format suitable for photos.
+            GIF: Compressed raster format supporting simple animations.
+
+        Vector Formats:
+            SVG: XML-based vector graphics, scalable without loss.
+            EPS: Encapsulated PostScript, used in printing and publishing.
+            PDF: Can contain both vector and raster graphics.
+
+        3D Formats:
+            STL: Standard for 3D printing and simple surface geometry.
+            OBJ: Stores 3D geometry with vertices, normals, and textures.
+            PLY: Polygon file format for storing 3D meshes.
+            COLLADA (DAE): Exchange format for 3D assets between software.
+
